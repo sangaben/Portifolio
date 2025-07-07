@@ -6,7 +6,7 @@
 
 👋 **Hello!** I'm **Sanga Ben**, a **Full-Stack Developer & Designer** from **Uganda**. This repository contains my **portfolio website**, showcasing my projects, skills, and professional journey.
 
-🔗 **Live Demo:** [https://sangaben.github.io/portfolio](https://sangaben.github.io/portfolio) *(Replace with your actual URL)*
+🔗 **Live Demo:** [https://sangaben.github.io/portfolio](https://sangaben.github.io/poritfolio) 
 
 ---
 
