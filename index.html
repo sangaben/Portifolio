@@ -183,15 +183,25 @@
       background-color: white;
     }
     
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
     .education-card {
       background: white;
       border-radius: 8px;
       padding: 1.5rem;
-      margin-bottom: 1.5rem;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
       display: flex;
       gap: 1.5rem;
       align-items: flex-start;
+      transition: transform 0.3s ease;
+    }
+    
+    .education-card:hover {
+      transform: translateY(-5px);
     }
     
     .education-icon {
@@ -222,8 +232,48 @@
       font-style: italic;
     }
     
-    #projects {
+    .education-details .achievement {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    
+    #certifications {
       background-color: #f1f3f6;
+    }
+    
+    .certifications-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .certification-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+      border-left: 4px solid var(--accent);
+    }
+    
+    .certification-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .certification-card h3 {
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .certification-card p {
+      color: #555;
+      font-size: 0.9rem;
+    }
+    
+    #projects {
+      background-color: white;
     }
     
     .project-grid {
@@ -301,7 +351,7 @@
     }
     
     #skills {
-      background-color: white;
+      background-color: #f1f3f6;
     }
     
     .skills-container {
@@ -342,6 +392,23 @@
       position: absolute;
       left: 0;
       color: var(--accent);
+    }
+    
+    #dream {
+      background-color: white;
+    }
+    
+    .dream-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+    
+    .dream-icon {
+      font-size: 3rem;
+      color: var(--secondary);
     }
     
     #contact {
@@ -402,6 +469,102 @@
       color: white;
     }
     
+    /* Animation classes */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background-color: var(--secondary);
+      transform: translateY(-3px);
+    }
+    
+    /* Dark mode toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+    
+    .theme-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode #about,
+    body.dark-mode #education,
+    body.dark-mode #projects,
+    body.dark-mode #dream,
+    body.dark-mode .service-card,
+    body.dark-mode .education-card,
+    body.dark-mode .project-card,
+    body.dark-mode .skill-category,
+    body.dark-mode .certification-card {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    body.dark-mode .service-card p,
+    body.dark-mode .education-details .year,
+    body.dark-mode .project-card p,
+    body.dark-mode .certification-card p {
+      color: #b0b0b0;
+    }
+    
+    body.dark-mode .tech-tag {
+      background-color: #333;
+      color: #e0e0e0;
+    }
+    
     @media (max-width: 768px) {
       header h1 {
         font-size: 2.2rem;
@@ -414,13 +577,25 @@
       .education-card {
         flex-direction: column;
       }
+      
+      .theme-toggle {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Dark mode toggle -->
+  <div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </div>
+  
   <header>
     <div class="profile-container">
-      <img src="sanga.jpg" alt="Sanga Benjamin" class="profile-image">
+      <img src="sanga.jpg" alt="Sanga Ben" class="profile-image">
       <div>
         <h1>Sanga Ben</h1>
         <p>Full-Stack Developer | Designer | Web Solutions Provider</p>
@@ -430,8 +605,10 @@
       <a href="#about"><i class="fas fa-user"></i> About</a>
       <a href="#services"><i class="fas fa-laptop-code"></i> Services</a>
       <a href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
+      <a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a>
       <a href="#projects"><i class="fas fa-code"></i> Projects</a>
       <a href="#skills"><i class="fas fa-cogs"></i> Skills</a>
+      <a href="#dream"><i class="fas fa-star"></i> My Dream</a>
       <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
     </nav>
   </header>
@@ -472,16 +649,72 @@
   </section>
 
   <section id="education">
-    <h2>Education</h2>
-    <div class="education-card">
-      <div class="education-icon">
-        <i class="fas fa-university"></i>
+    <h2>Education Journey</h2>
+    <div class="education-grid">
+      <div class="education-card fade-in">
+        <div class="education-icon">
+          <i class="fas fa-school"></i>
+        </div>
+        <div class="education-details">
+          <h3>Kigorobya Parents Primary School</h3>
+          <p class="degree">Primary Leaving Examination (PLE)</p>
+          <p class="year">Completed in 2014</p>
+          <p class="achievement">Achieved 10 aggregates</p>
+        </div>
       </div>
-      <div class="education-details">
-        <h3>Muni University</h3>
-        <p class="degree">Bachelor of Science in Information Systems</p>
-        <p class="year">2021 - 2024</p>
-        <p>Specialized in software development, database systems, and enterprise architecture. Completed coursework in web technologies, systems analysis, and project management.</p>
+      
+      <div class="education-card fade-in">
+        <div class="education-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="education-details">
+          <h3>Premier Secondary School, Hoima</h3>
+          <p class="degree">O-Level & A-Level (PEM/ICT)</p>
+          <p class="year">2015 - 2020</p>
+          <p class="achievement">Achieved 17 points in A-Level</p>
+        </div>
+      </div>
+      
+      <div class="education-card fade-in">
+        <div class="education-icon">
+          <i class="fas fa-university"></i>
+        </div>
+        <div class="education-details">
+          <h3>Muni University</h3>
+          <p class="degree">Bachelor of Science in Information Systems</p>
+          <p class="year">2021 - 2024</p>
+          <p class="achievement">Admitted on national merit</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <h2>Certifications & Leadership</h2>
+    <div class="certifications-container">
+      <div class="certification-card fade-in">
+        <h3>Digital Awareness</h3>
+        <p>Certified in digital literacy and modern computing concepts.</p>
+      </div>
+      
+      <div class="certification-card fade-in">
+        <h3>Networking Certifications</h3>
+        <p>Introduction to Networks, Switching, Routing and Wireless Essentials.</p>
+      </div>
+      
+      <div class="certification-card fade-in">
+        <h3>IT Essentials</h3>
+        <p>Hardware and software troubleshooting certification.</p>
+      </div>
+      
+      <div class="certification-card fade-in">
+        <h3>Leadership Roles</h3>
+        <p>Commissioner of Electoral Commission at Muni University.</p>
+      </div>
+      
+      <div class="certification-card fade-in">
+        <h3>Student Association</h3>
+        <p>Minister for Information of West Nile Students Association.</p>
       </div>
     </div>
   </section>
@@ -489,9 +722,9 @@
   <section id="projects">
     <h2>Featured Projects</h2>
     <div class="project-grid">
-      <div class="project-card">
+      <div class="project-card fade-in">
         <h3>Oasis Schools Arua</h3>
-        </p>A school website, providing information about the schools, timely update of news and information, past and upcoming events</p>
+        <p>A school website, providing information about the schools, timely update of news and information, past and upcoming events.</p>
         <div class="project-links">
           <a href="https://oasisschoolsarua.onrender.com" target="_blank" class="project-link">
             <i class="fas fa-external-link-alt"></i> Live Site
@@ -508,7 +741,7 @@
         </div>
       </div>
       
-      <div class="project-card">
+      <div class="project-card fade-in">
         <h3>EcoHope Co. Ltd</h3>
         <p>Agricultural platform connecting farmers with modern crop/livestock solutions and market information.</p>
         <div class="project-links">
@@ -527,7 +760,7 @@
         </div>
       </div>
       
-      <div class="project-card">
+      <div class="project-card fade-in">
         <h3>SangaBiz</h3>
         <p>Music streaming platform with artist profiles, song catalogs, and integrated music news.</p>
         <div class="project-links">
@@ -551,7 +784,7 @@
   <section id="skills">
     <h2>Technical Skills</h2>
     <div class="skills-container">
-      <div class="skill-category">
+      <div class="skill-category fade-in">
         <h3><i class="fas fa-laptop-code"></i> Development</h3>
         <ul>
           <li>Python & Django</li>
@@ -562,7 +795,7 @@
         </ul>
       </div>
       
-      <div class="skill-category">
+      <div class="skill-category fade-in">
         <h3><i class="fas fa-paint-brush"></i> Design</h3>
         <ul>
           <li>UI/UX Design</li>
@@ -573,7 +806,7 @@
         </ul>
       </div>
       
-      <div class="skill-category">
+      <div class="skill-category fade-in">
         <h3><i class="fas fa-server"></i> Infrastructure</h3>
         <ul>
           <li>Web Hosting</li>
@@ -584,7 +817,7 @@
         </ul>
       </div>
       
-      <div class="skill-category">
+      <div class="skill-category fade-in">
         <h3><i class="fas fa-tools"></i> Tools</h3>
         <ul>
           <li>Git & GitHub</li>
@@ -597,27 +830,38 @@
     </div>
   </section>
 
+  <section id="dream">
+    <h2>My Childhood Dream</h2>
+    <div class="dream-content">
+      <div class="dream-icon">
+        <i class="fas fa-futbol"></i>
+      </div>
+      <p>Before becoming passionate about technology, my childhood dream was to become a professional footballer. I spent countless hours playing and dreaming of becoming a star player.</p>
+      <p>While my career path led me to technology, that early passion for sports taught me valuable lessons about teamwork, discipline, and perseverance that I apply to my work today.</p>
+    </div>
+  </section>
+
   <section id="contact">
     <h2>Get In Touch</h2>
     <p>I'm currently available for projects and collaborations. Whether you need a website, design work, or hosting solutions, let's discuss how I can help.</p>
     
     <div class="contact-methods">
-      <div class="contact-card">
+      <div class="contact-card fade-in">
         <i class="fas fa-envelope"></i>
         <p><a href="mailto:sangaben07@gmail.com">sangaben07@gmail.com</a></p>
       </div>
       
-      <div class="contact-card">
+      <div class="contact-card fade-in">
         <i class="fab fa-whatsapp"></i>
         <p><a href="https://wa.me/256766670007" target="_blank">+256 766 670 007</a></p>
       </div>
       
-      <div class="contact-card">
+      <div class="contact-card fade-in">
         <i class="fab fa-github"></i>
         <p><a href="https://github.com/sangaben" target="_blank">github.com/sangaben</a></p>
       </div>
       
-      <div class="contact-card">
+      <div class="contact-card fade-in">
         <i class="fab fa-linkedin"></i>
         <p><a href="https://www.linkedin.com/in/ben-sanga-a9b2032b1/" target="_blank">LinkedIn Profile</a></p>
       </div>
@@ -628,5 +872,95 @@
     <p>&copy; 2025 Sanga Ben. All rights reserved.</p>
     <p>Built with ❤️ using HTML, CSS, and JavaScript</p>
   </footer>
+
+  <!-- Back to top button -->
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Dark mode toggle
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      const icon = themeToggle.querySelector('i');
+      
+      // Check for saved theme preference
+      const currentTheme = localStorage.getItem('theme');
+      if (currentTheme === 'dark') {
+        body.classList.add('dark-mode');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      }
+      
+      themeToggle.addEventListener('click', function() {
+        body.classList.toggle('dark-mode');
+        
+        if (body.classList.contains('dark-mode')) {
+          localStorage.setItem('theme', 'dark');
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-sun');
+        } else {
+          localStorage.setItem('theme', 'light');
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+        }
+      });
+      
+      // Back to top button
+      const backToTopBtn = document.getElementById('backToTop');
+      
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      });
+      
+      backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Intersection Observer for fade-in animations
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      fadeElements.forEach(element => {
+        observer.observe(element);
+      });
+      
+      // Current year for footer
+      document.querySelector('footer p:first-child').textContent = 
+        `© ${new Date().getFullYear()} Sanga Ben. All rights reserved.`;
+    });
+  </script>
 </body>
 </html>
