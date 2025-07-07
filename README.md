@@ -2,7 +2,7 @@
 
 ![Portfolio Preview](https://img.shields.io/badge/Status-Live-brightgreen) 
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/sangaben/portfolio) 
-![License](https://img.shields.io/badge/License-MIT-blue)
+![License](https://img.shields.io/badge/License-MIT-blue) 
 
 👋 **Hello!** I'm **Sanga Ben**, a **Full-Stack Developer & Designer** from **Uganda**. This repository contains my **portfolio website**, showcasing my projects, skills, and professional journey.
 
