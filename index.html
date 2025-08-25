@@ -595,7 +595,7 @@
   
   <header>
     <div class="profile-container">
-      <img src="sanga.jpeg" alt="Sanga Ben" class="profile-image">
+      <img src="sanga.jpg" alt="Sanga Ben" class="profile-image">
       <div>
         <h1>Sanga Ben</h1>
         <p>Full-Stack Developer | Designer | Web Solutions Provider</p>
@@ -656,9 +656,7 @@
           <i class="fas fa-school"></i>
         </div>
         <div class="education-details">
-          <h3>Karongo Primary School-Masindi</h3>
-          <h3>Ambidro Primary School-Maracha</h3>
-          <h3>Kigorobya Parents Primary School-Hoima</h3>
+          <h3>Kigorobya Parents Primary School</h3>
           <p class="degree">Primary Leaving Examination (PLE)</p>
           <p class="year">Completed in 2014</p>
           <p class="achievement">Achieved 10 aggregates</p>
@@ -731,9 +729,9 @@
           <a href="https://oasisschoolsarua.onrender.com" target="_blank" class="project-link">
             <i class="fas fa-external-link-alt"></i> Live Site
           </a>
-         <!-- <a href="https://github.com/sangaben/school_website" target="_blank" class="project-link">
+          <a href="https://github.com/sangaben/oasis-schools" target="_blank" class="project-link">
             <i class="fab fa-github"></i> Code
-          </a> -->
+          </a>
         </div>
         <div class="tech-used">
           <span class="tech-tag">Django</span>
@@ -750,9 +748,9 @@
           <a href="https://ecohopecoltd.onrender.com" target="_blank" class="project-link">
             <i class="fas fa-external-link-alt"></i> Live Site
           </a>
-        <!--  <a href="https://github.com/sangaben/ecohopecoltd" target="_blank" class="project-link">
+          <a href="https://github.com/sangaben/ecohope" target="_blank" class="project-link">
             <i class="fab fa-github"></i> Code
-          </a> -->
+          </a>
         </div>
         <div class="tech-used">
           <span class="tech-tag">Django</span>
@@ -769,9 +767,9 @@
           <a href="https://sangabiz.onrender.com" target="_blank" class="project-link">
             <i class="fas fa-external-link-alt"></i> Live Site
           </a>
-        <!--  <a href="https://github.com/sangaben/sangabiz" target="_blank" class="project-link">
+          <a href="https://github.com/sangaben/sangabiz" target="_blank" class="project-link">
             <i class="fab fa-github"></i> Code
-          </a> -->
+          </a>
         </div>
         <div class="tech-used">
           <span class="tech-tag">Django</span>
@@ -874,6 +872,271 @@
     <p>&copy; 2025 Sanga Ben. All rights reserved.</p>
     <p>Built with ❤️ using HTML, CSS, and JavaScript</p>
   </footer>
+
+  <!-- AI Chat Box -->
+<div id="ai-chat-container">
+  <div id="ai-chat-header">
+    <span>Ask me anything</span>
+    <button id="ai-chat-close"><i class="fas fa-times"></i></button>
+  </div>
+  <div id="ai-chat-messages"></div>
+  <div id="ai-chat-input">
+    <input type="text" id="ai-user-input" placeholder="Type your question...">
+    <button id="ai-send-btn"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+<button id="ai-chat-toggle">
+  <i class="fas fa-robot"></i>
+</button>
+
+<style>
+  /* AI Chat Box Styles */
+  #ai-chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    height: 450px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  
+  #ai-chat-container.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  #ai-chat-header {
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #ai-chat-header span {
+    font-weight: 600;
+  }
+  
+  #ai-chat-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  #ai-chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #f9f9f9;
+  }
+  
+  .ai-message {
+    margin-bottom: 15px;
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .ai-message.user {
+    background: var(--secondary);
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .ai-message.bot {
+    background: #e0e0e0;
+    color: var(--dark);
+    margin-right: auto;
+    border-bottom-left-radius: 5px;
+  }
+  
+  #ai-chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    background: white;
+  }
+  
+  #ai-user-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    outline: none;
+  }
+  
+  #ai-send-btn {
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  #ai-send-btn:hover {
+    background: var(--dark);
+  }
+  
+  #ai-chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  
+  #ai-chat-toggle:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Dark mode styles */
+  body.dark-mode #ai-chat-container {
+    background: #1e1e1e;
+    border: 1px solid #333;
+  }
+  
+  body.dark-mode #ai-chat-messages {
+    background: #121212;
+  }
+  
+  body.dark-mode .ai-message.bot {
+    background: #333;
+    color: #e0e0e0;
+  }
+  
+  body.dark-mode #ai-chat-input {
+    background: #1e1e1e;
+    border-top: 1px solid #333;
+  }
+  
+  body.dark-mode #ai-user-input {
+    background: #121212;
+    color: #e0e0e0;
+    border-color: #333;
+  }
+</style>
+
+<script>
+  // AI Chat Functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const chatContainer = document.getElementById('ai-chat-container');
+    const chatToggle = document.getElementById('ai-chat-toggle');
+    const chatClose = document.getElementById('ai-chat-close');
+    const chatMessages = document.getElementById('ai-chat-messages');
+    const userInput = document.getElementById('ai-user-input');
+    const sendBtn = document.getElementById('ai-send-btn');
+    
+    // Toggle chat visibility
+    chatToggle.addEventListener('click', function() {
+      chatContainer.classList.toggle('active');
+    });
+    
+    chatClose.addEventListener('click', function() {
+      chatContainer.classList.remove('active');
+    });
+    
+    // Send message function
+    function sendMessage() {
+      const message = userInput.value.trim();
+      if (message === '') return;
+      
+      // Add user message
+      addMessage(message, 'user');
+      userInput.value = '';
+      
+      // Simulate typing indicator
+      const typingIndicator = document.createElement('div');
+      typingIndicator.className = 'ai-message bot';
+      typingIndicator.innerHTML = '<i class="fas fa-ellipsis-h"></i>';
+      chatMessages.appendChild(typingIndicator);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      
+      // Simulate AI response after delay
+      setTimeout(() => {
+        chatMessages.removeChild(typingIndicator);
+        const response = getAIResponse(message);
+        addMessage(response, 'bot');
+      }, 1000);
+    }
+    
+    // Add message to chat
+    function addMessage(text, sender) {
+      const messageElement = document.createElement('div');
+      messageElement.className = `ai-message ${sender}`;
+      messageElement.textContent = text;
+      chatMessages.appendChild(messageElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    // Simple AI response logic
+    function getAIResponse(message) {
+      const lowerMessage = message.toLowerCase();
+      
+      // Predefined responses
+      if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+        return "Hello! I'm an AI assistant for Sanga's portfolio. How can I help you today?";
+      } else if (lowerMessage.includes('service') || lowerMessage.includes('offer')) {
+        return "Sanga offers web development, graphic design, and web hosting services. You can find more details in the Services section.";
+      } else if (lowerMessage.includes('contact') || lowerMessage.includes('reach')) {
+        return "You can contact Sanga via email at sangaben07@gmail.com or WhatsApp at +256 766 670 007. The contact section has all the details!";
+      } else if (lowerMessage.includes('project') || lowerMessage.includes('work')) {
+        return "Sanga has worked on several projects including Oasis Schools Arua, EcoHope Co. Ltd, and SangaBiz. Check out the Projects section for more info.";
+      } else if (lowerMessage.includes('skill') || lowerMessage.includes('expert')) {
+        return "Sanga's skills include Python/Django, JavaScript/React, UI/UX design, and web hosting. The Skills section has a complete list.";
+      } else if (lowerMessage.includes('experience') || lowerMessage.includes('background')) {
+        return "Sanga has a Bachelor's in Information Systems and various certifications in networking and IT. The Education section has more details.";
+      } else {
+        return "I'm an AI assistant for Sanga's portfolio. I can answer questions about his services, projects, and experience. Try asking about his skills or how to contact him!";
+      }
+    }
+    
+    // Event listeners
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+    
+    // Initial greeting
+    setTimeout(() => {
+      addMessage("Hi there! I'm an AI assistant here to answer questions about Sanga's work and services. How can I help you today?", 'bot');
+    }, 1000);
+  });
+</script>
 
   <!-- Back to top button -->
   <div class="back-to-top" id="backToTop">
